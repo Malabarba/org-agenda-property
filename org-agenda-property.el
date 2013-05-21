@@ -4,8 +4,9 @@
 
 ;; Author: Artur Malabarba <bruce.connor.am@gmail.com>
 ;; URL: http://github.com/Bruce-Connor/org-agenda-property
-;; Version: 1
-;; Keywords: faces frames
+;; Version: 1.1
+;; Package-Requires: ((org "7"))
+;; Keywords: calendar 
 
 ;;; Commentary:
 
@@ -57,13 +58,16 @@
 ;; 
 
 ;;; Change Log:
+;; 1.1 - 20130521 - Fixed some Warnings.
+;; 1.1 - 20130521 - Added requirements.
 ;; 1 - 20130521 - Released.
 
 ;;; Code:
 
-(defconst org-agenda-property-version "1"
+(require 'org)
+(defconst org-agenda-property-version "1.1"
   "Version string of the `org-agenda-property' package.")
-(defconst org-agenda-property-version-int 1
+(defconst org-agenda-property-version-int 2
   "Integer version number of the `org-agenda-property' package (for comparing versions).")
 
 (defun org-agenda-property-bug-report ()
@@ -113,10 +117,9 @@ window, otherwise 'next-line."
   "Append locations to agenda view.
 Uses `org-agenda-locations-column'."
   (delete-other-windows)
-  (beginning-of-buffer)
+  (goto-char (point-min))
   (while (not (eobp))
-    (next-line 1)
-    (beginning-of-line)
+    (forward-line 1)
     ;; Only do anything if this is a line with an item
     (when (org-get-at-bol 'org-marker)
       ;; Move past the file name.
@@ -154,7 +157,7 @@ Uses `org-agenda-locations-column'."
   (let ((out " [")
         (first t))
     (dolist (cur org-agenda-property-list)
-      (let ((prop (org-entry-get this-marker cur)))
+      (let ((prop (org-entry-get marker cur)))
         (when prop
           (setq out (if first (concat out prop)
                       (concat out org-agenda-property-separator prop)))
