@@ -4,7 +4,7 @@
 
 ;; Author: Artur Malabarba <bruce.connor.am@gmail.com>
 ;; URL: http://github.com/Bruce-Connor/org-agenda-property
-;; Version: 1.1
+;; Version: 1.2
 ;; Package-Requires: ((org "7"))
 ;; Keywords: calendar 
 
@@ -58,16 +58,18 @@
 ;; 
 
 ;;; Change Log:
+;; 1.2 - 20130521 - Renamed function. More robust hook.
 ;; 1.1 - 20130521 - Fixed some Warnings.
 ;; 1.1 - 20130521 - Added requirements.
 ;; 1 - 20130521 - Released.
 
 ;;; Code:
 
-(require 'org)
-(defconst org-agenda-property-version "1.1"
+(require 'org-agenda)
+
+(defconst org-agenda-property-version "1.2"
   "Version string of the `org-agenda-property' package.")
-(defconst org-agenda-property-version-int 2
+(defconst org-agenda-property-version-int 3
   "Integer version number of the `org-agenda-property' package (for comparing versions).")
 
 (defun org-agenda-property-bug-report ()
@@ -113,7 +115,7 @@ window, otherwise 'next-line."
   :group 'org-agenda-property)
 
 ;;;###autoload
-(defun org-agenda-add-locations ()
+(defun org-agenda-property-add-properties ()
   "Append locations to agenda view.
 Uses `org-agenda-locations-column'."
   (delete-other-windows)
@@ -166,6 +168,8 @@ Uses `org-agenda-locations-column'."
       (concat out "]"))))
 
 ;;;###autoload
-(add-hook 'org-agenda-finalize-hook 'org-agenda-add-locations)
+(if (boundp org-agenda-finalize-hook)
+    (add-hook 'org-agenda-finalize-hook 'org-agenda-property-add-properties)
+  (add-hook 'org-finalize-agenda-hook 'org-agenda-property-add-properties))
 
 (provide 'org-agenda-property)
