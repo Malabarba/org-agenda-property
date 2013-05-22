@@ -4,8 +4,8 @@
 
 ;; Author: Artur Malabarba <bruce.connor.am@gmail.com>
 ;; URL: http://github.com/Bruce-Connor/org-agenda-property
-;; Version: 1.2
-;; Package-Requires: ((org "7"))
+;; Version: 1.3
+;; Package-Requires: ((emacs "24.2"))
 ;; Keywords: calendar 
 
 ;;; Commentary:
@@ -58,6 +58,7 @@
 ;; 
 
 ;;; Change Log:
+;; 1.3 - 20130522 - Fixed bug.
 ;; 1.2 - 20130521 - Renamed function. More robust hook.
 ;; 1.1 - 20130521 - Fixed some Warnings.
 ;; 1.1 - 20130521 - Added requirements.
@@ -67,9 +68,9 @@
 
 (require 'org-agenda)
 
-(defconst org-agenda-property-version "1.2"
+(defconst org-agenda-property-version "1.3"
   "Version string of the `org-agenda-property' package.")
-(defconst org-agenda-property-version-int 3
+(defconst org-agenda-property-version-int 4
   "Integer version number of the `org-agenda-property' package (for comparing versions).")
 
 (defun org-agenda-property-bug-report ()
@@ -168,7 +169,7 @@ Uses `org-agenda-locations-column'."
       (concat out "]"))))
 
 ;;;###autoload
-(if (boundp org-agenda-finalize-hook)
+(if (boundp 'org-agenda-finalize-hook)
     (add-hook 'org-agenda-finalize-hook 'org-agenda-property-add-properties)
   (add-hook 'org-finalize-agenda-hook 'org-agenda-property-add-properties))
 
