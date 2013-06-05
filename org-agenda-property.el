@@ -119,7 +119,6 @@ window, otherwise 'next-line."
 (defun org-agenda-property-add-properties ()
   "Append locations to agenda view.
 Uses `org-agenda-locations-column'."
-  (delete-other-windows)
   (goto-char (point-min))
   (while (not (eobp))
     (forward-line 1)
