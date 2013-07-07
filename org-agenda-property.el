@@ -4,9 +4,11 @@
 
 ;; Author: Artur Malabarba <bruce.connor.am@gmail.com>
 ;; URL: http://github.com/Bruce-Connor/org-agenda-property
-;; Version: 1.3
+;; Version: 1.3.1
 ;; Package-Requires: ((emacs "24.2"))
 ;; Keywords: calendar 
+;; Separator: -
+;; ShortName: org-agenda-property
 
 ;;; Commentary:
 
@@ -25,7 +27,7 @@
 
 ;;      If you installed manually, just make sure it's in your
 ;;      load-path and call
-;;		(require 'smart-mode-line)
+;;		(require 'org-agenda-property)
 
 ;; Variables
 ;; 
@@ -58,6 +60,7 @@
 ;; 
 
 ;;; Change Log:
+;; 1.3.1 - 20130707 - Fixed some mentions to the wrong package.
 ;; 1.3 - 20130522 - Fixed bug.
 ;; 1.2 - 20130521 - Renamed function. More robust hook.
 ;; 1.1 - 20130521 - Fixed some Warnings.
@@ -68,9 +71,9 @@
 
 (require 'org-agenda)
 
-(defconst org-agenda-property-version "1.3"
+(defconst org-agenda-property-version "1.3.1"
   "Version string of the `org-agenda-property' package.")
-(defconst org-agenda-property-version-int 4
+(defconst org-agenda-property-version-int 5
   "Integer version number of the `org-agenda-property' package (for comparing versions).")
 
 (defun org-agenda-property-bug-report ()
@@ -81,7 +84,7 @@
            org-agenda-property-version emacs-version))
 
 (defun org-agenda-property-customize ()
-  "Open the customization menu the `smart-mode-line' group."
+  "Open the customization menu the `org-agenda-property' group."
   (interactive)
   (customize-group 'org-agenda-property t))
 
