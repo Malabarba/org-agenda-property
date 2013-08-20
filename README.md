@@ -1,11 +1,11 @@
-Display org properties in the agenda buffer
+Propertize your org-agenda 
 ===================
-
+_Display org properties in the agenda buffer_
 ![Screenshot](https://raw.github.com/Bruce-Connor/org-agenda-property/master/screenshot-2013-08-20--193404.jpg)
 
-`org-agenda-property` is a package which *displays the properties* of an
-org item beside (or below) the item's title *in the agenda buffer*. The
-image above shows it being used to *display apointment locations*.
+`org-agenda-property` is a package which **displays the properties** of an
+org item beside (or below) the item's title **in the agenda buffer**. The
+image above shows it being used to **display apointment locations**.
 
 
 Customize the variable `org-agenda-property-list` to add which
