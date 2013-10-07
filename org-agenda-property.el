@@ -162,7 +162,7 @@ Uses `org-agenda-locations-column'."
   (let ((out " [")
         (first t))
     (dolist (cur org-agenda-property-list)
-      (let ((prop (org-entry-get marker cur)))
+      (let ((prop (org-entry-get marker cur 'selective)))
         (when prop
           (setq out (if first (concat out prop)
                       (concat out org-agenda-property-separator prop)))
