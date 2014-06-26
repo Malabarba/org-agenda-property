@@ -4,7 +4,7 @@
 
 ;; Author: Artur Malabarba <bruce.connor.am@gmail.com>
 ;; URL: http://github.com/Bruce-Connor/org-agenda-property
-;; Version: 1.3.1
+;; Version: 1.3.2
 ;; Package-Requires: ((emacs "24.2"))
 ;; Keywords: calendar 
 ;; Separator: -
@@ -71,13 +71,14 @@
 
 (require 'org-agenda)
 
-(defconst org-agenda-property-version "1.3.1"
+(defconst org-agenda-property-version "1.3.2"
   "Version string of the `org-agenda-property' package.")
-(defconst org-agenda-property-version-int 5
+(defconst org-agenda-property-version-int 6
   "Integer version number of the `org-agenda-property' package (for comparing versions).")
 
 (defun org-agenda-property-bug-report ()
-  "Opens github issues page in a web browser. Please send me any bugs you find, and please inclue your emacs and sml versions."
+  "Opens github issues page in a web browser.
+Please send me any bugs you find, and please inclue your emacs and your package versions."
   (interactive)
   (browse-url "https://github.com/Bruce-Connor/org-agenda-property/issues/new")
   (message "Your org-agenda-property-version is: %s, and your emacs version is: %s.\nPlease include this in your report!"
@@ -171,9 +172,16 @@ Uses `org-agenda-locations-column'."
       (concat out "]"))))
 
 ;;;###autoload
+(eval-after-load 'org-agenda
+  '(if (boundp 'org-agenda-finalize-hook)
+       (add-hook 'org-agenda-finalize-hook 'org-agenda-property-add-properties)
+     (add-hook 'org-finalize-agenda-hook 'org-agenda-property-add-properties)))
+
+;;;###autoload
 (if (boundp 'org-agenda-finalize-hook)
     (add-hook 'org-agenda-finalize-hook 'org-agenda-property-add-properties)
-  (add-hook 'org-finalize-agenda-hook 'org-agenda-property-add-properties))
+  (when (boundp 'org-finalize-agenda-hook)
+    (add-hook 'org-finalize-agenda-hook 'org-agenda-property-add-properties)))
 
 (provide 'org-agenda-property)
 ;;; org-agenda-property.el ends here
