@@ -14,14 +14,9 @@ properties you which to show.
 Installation
 ===
 
-If you installed from Melpa, you shouldn't need to do anything else.
-Just customize `org-agenda-property-list` and call your agenda buffer
-(tipically `org-agenda-list') to see the magic.
+If you have [Melpa](http://melpa.org/#/getting-started) configured, just issue 
 
-If you installed manually, just make sure it's in your load-path and
-call
-
-    (require 'smart-mode-line)
+    M-x package-install RET org-agenda-property
     
 Variables
 ===
@@ -33,7 +28,7 @@ explanatory, I list here only the most important two.
 
 1. `org-agenda-property-list`:  
    This should be a list of all properties you want displayed in the
-   buffer. Default is "LOCATION".
+   buffer. Default is `"LOCATION"`.
              
 2. `org-agenda-property-position`:  
    This is where you want the properties to be displayed (besides the
